@@ -1,0 +1,52 @@
+//prog14
+
+/*----------------------header file part------------------------*/
+#include<stdio.h>
+#include<stdlib.h>
+#define SUCCESS 1
+#define FAILURE 0
+
+typedef struct node
+{
+    int data;
+    struct node * link;
+}node;
+node *head = NULL;
+
+void InsertBeg(int);
+void display();
+
+/*----------------------header file part------------------------*/
+/*----------------------main.c part-----------------------------*/
+
+void main(void){
+    
+    InsertBeg(10);
+    display();
+    return;
+}
+
+void InsertBeg(int item){
+    node * new;
+    new=(node *)malloc(sizeof(node));
+    if(NULL==new){printf("MAF\n");exit(FAILURE);}
+    new->data=item;
+    if(NULL==head){
+        new->link=NULL;
+    }
+    else
+    {
+        new->link=head;
+    }
+    head=new;
+}
+
+void display(){
+    node *p;
+    p=head;
+    if(NULL==p){printf("List is empty\n");}
+    while(NULL!=p){
+        printf("data is -> %d ",p->data);
+        p=p->link;
+    }
+}
